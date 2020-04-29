@@ -1,0 +1,2 @@
+Peptide	Charges	Probability	Spectral Count	Intensity	Assigned Modifications	Observed Modifications	Protein	Protein ID	Entry Name	Gene	Protein Description	Mapped Proteins
+KAEPLTWAQLK	2	0.5247	1	0.000000			sp|P61576|REC04_HUMAN	P61576	REC04_HUMAN	HERV-K104	Endogenous retrovirus group K member 104 Rec protein 	

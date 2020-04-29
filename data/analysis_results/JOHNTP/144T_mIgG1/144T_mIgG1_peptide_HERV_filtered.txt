@@ -1,0 +1,1 @@
+Peptide	Charges	Probability	Spectral Count	Intensity	Assigned Modifications	Observed Modifications	Protein	Protein ID	Entry Name	Gene	Protein Description	Mapped Proteins

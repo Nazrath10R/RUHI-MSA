@@ -1,0 +1,316 @@
+frequency	name	unimod_name	accession	remark	mono_mass
+43803	Phosphoserine	Phospho	21		
+9705	Phosphothreonine	Phospho	21		
+5526	N-linked glycosylation	Deamidation	7		
+4227	Glycyl lysine isopeptide	NA	NA	cross link	
+4193	N6-acetyllysine	Acetyl	1		
+4120	Phosphotyrosine	Phospho	21		
+1133	O-linked glycosylation	Deamidation	7		
+1032	N-acetylalanine	Acetyl	1		
+980	4-hydroxyproline	Hydroxylation	35		
+878	interchain with G-Cter in ubiquitin	Carbamyl	5	only for ubiqu 	
+826	Pyrrolidone carboxylic acid	Glu->pyro-Glu; Gln->pyro-Glu	"27,28"		
+684	N-acetylmethionine	Acetyl	1		
+678	Tryptophyl-tyrosyl-methioninium	NA	NA	cross link	
+665	D-alanine 	NA	NA	stereoisomer	
+637	Phenylalanine amide	Amide	2		
+515	N-acetylserine	Acetyl	1		
+450	4-carboxyglutamate	carboxyl	299		
+443	Leucine amide	Amide	2		
+413	interchain with G-Cter in SUMO	Carbamyl	5		
+332	Valine amide	Amide	2		
+291	Asymmetric dimethylarginine	di-Methylation	36		
+258	S-palmitoyl cysteine	Palmitoylation	47		
+240	N6-methyllysine	Methyl	34		
+232	Isoglutamyl lysine isopeptide 	NA	NA	cross link	
+206	Hydroxyproline	Hydroxylation	35	non-proteinogenic amino acid	
+199	Pentaglycyl murein peptidoglycan amidated alanine	NA	NA	unique to some species	
+199	Sulfotyrosine	Sulfation	40		
+196	"N6,N6,N6-trimethyllysine"	tri-Methylation	37		
+191	Cysteine sulfenic acid (-SOH)	Hydroxylation	35		
+182	Phosphocysteine	Phospho	21		
+172	"N6,N6-dimethyllysine"	di-Methylation	36		
+171	N-myristoyl glycine	Myristoylation	45		
+162	N6-(pyridoxal phosphate)lysine	Pyridoxal-phos	46		
+159	Cyclopeptide	NA	NA	cross link	
+147	C-linked glycosylation	Deamidation	7		
+140	Tele-phosphohistidine	Phosphorylation	21		
+140	Glycine amide	Amide	2		
+133	ADP-ribosylarginine	ADP-Ribose	213		
+124	5-hydroxylysine	Hydroxylation	35		
+124	Glycine radical	Carbamidomethyl	4		
+120	"3',4'-dihydroxyphenylalanine"	Glutathione	55		
+119	Pyruvic acid 	pyruvicC	382		
+115	Arginine amide	Amide	2		
+114	D-serine 	NA	NA	stereoisomer	
+112	O-(phosphoribosyl dephospho-coenzyme A)serine	pRibodePcoA	395		
+103	N-acetylthreonine	Acetyl	1		
+101	Asparagine amide	Amide	2		
+99	Blocked amino end 	NA	NA	x	
+97	Isoleucine amide	Amide	2		
+90	Omega-N-methylarginine	Methyl	34		
+89	Threonine amide	Amide	2		
+89	Methionine amide	Amide	2		
+88	N6-succinyllysine	Suc_anh_light	64		
+85	Diphthamide	Diphthamide	375		
+85	Cysteine amide	Amide	2		
+82	Omega-N-methylated arginine	Dimethyl	36		
+79	S-farnesyl cysteine	Farnesylation	44		
+75	N6-(retinylidene)lysine	retinal	380		
+73	Cysteine persulfide	persulfide	421		
+71	Tryptophan amide	Amide	2		
+70	Symmetric dimethylarginine	di-Methylation	36		
+64	Lysine amide	Amide	2		
+63	N-acetylglycine	Acetyl	1		
+63	Nitrated tyrosine	Nitro	354		
+62	S-nitrosocysteine	SNO	275		
+62	Tyrosine amide	Amide	2		
+57	"3,4-dihydroxyproline"	dihydroxy	425		
+56	7'-hydroxytryptophan	Hydroxylation	35		
+55	Citrulline	Deamidation	7		
+55	S-geranylgeranyl cysteine	Geranyl-geranyl	48		
+52	Serine amide	Amide	2		
+51	Beta-methyllanthionine 	NA	NA	cross link	
+51	N-formylmethionine	Formyl	122		
+48	Cysteine methyl ester	Methyl	34		
+47	Proline amide	Amide	2		
+47	Thiazole-4-carboxylic acid 	azole	1355		
+45	Glutamate methyl ester 	Methyl+Deamidated	528		
+42	N-acetylaspartate	Acetyl	1		
+40	Alanine amide	Amide	2		
+38	Pros-phosphohistidine	Phospho	21		
+37	Deamidated asparagine	Deamidation	7		
+37	S-diacylglycerol cysteine	diacylglycerol	377		
+36	4-aspartylphosphate	Phospho	21		
+35	Lanthionine 	NA	NA	cross link	
+34	Allysine	Lysaminoadipicsealde	352		
+34	N-palmitoyl cysteine	Palmitoylation	47		
+34	N6-malonyllysine	Malonyl	747		
+33	Phosphohistidine	Phospho	21		
+32	6'-bromotryptophan	NA	NA		
+32	Dimethylated arginine	di-Methylation	36		
+31	N-acetylvaline	Acetyl	1		
+30	N6-carboxylysine	carboxyl	299		
+30	"2,3-didehydroalanine "	DehydroalaC	368		
+29	N6-methylated lysine	tri-Methylation	37		
+27	Glutamine amide	Amide	2		
+25	N-acetylglutamate	Acetyl	1		
+24	O-acetylserine	Acetyl	1		
+24	N4-methylasparagine	Methyl	34		
+22	O-(pantetheine 4'-phosphoryl)serine	p-pantetheine	49		
+20	Glycyl cysteine thioester	NA	NA	cross link	
+19	D-methionine	NA	NA	stereoisomer	
+19	"(Z)-2,3-didehydrobutyrine"	Phospho+PL	23		
+19	S-glutathionyl cysteine	Glutathione	55		
+18	ADP-ribosylcysteine	ADP-Ribose	213		
+18	N6-lipoyllysine	Lipoyl	42		
+18	S-Lysyl-methionine sulfilimine	NA	NA	cross link	
+17	"2,3-didehydrobutyrine"	Phospho+PL	23		
+16	GPI-anchor amidated serine	GPI-anchor	394		
+16	Cysteinyl-selenocysteine 	NA	NA	cross link	150.953636
+16	Deamidated glutamine	Deamidation	7		
+16	3-hydroxyproline	Hydroxylation	35		
+16	"N,N,N-trimethylalanine"	tri-Methylation	37		
+15	N-acetylproline	Acetyl	1		
+15	D-phenylalanine	NA	NA	stereoisomer	
+15	Thyroxine	tetraiodo	398		
+15	Histidine amide	Amide	2		
+14	Glutamic acid 1-amide	Amide	2		
+12	O-(5'-phospho-DNA)-tyrosine	Phospho	21		
+12	"Pyridine-2,5-dicarboxylic acid"	NA	NA	cross link	
+12	3-hydroxyasparagine	Hydroxylation	35		
+12	"2',4',5'-topaquinone"	quinone	392		
+12	Isoglutamyl cysteine thioester 	NA	NA	cross link	
+12	N6-poly(methylaminopropyl)lysine	NA	NA	cross link	426.441
+11	(3R)-3-hydroxyaspartate	Hydroxylation	35		
+11	Hypusine	hypusine	379		
+11	N-acetylcysteine	Acetyl	1		
+10	"N,N-dimethylproline"	Delta:H(5)C(2)	529		
+10	N6-biotinyllysine	Biotin	3		
+10	3-oxoalanine 	oxoalanine	402		
+10	Tele-methylhistidine	Methyl	34		
+9	2'-(S-cysteinyl)-histidine 	NA	NA	cross link	
+9	S-4a-FMN cysteine	FMN3	443		
+9	N6-palmitoyl lysine	Palmitoylation	47		
+9	S-methylcysteine	Methyl	34		
+8	1-thioglycine	thiocarboxy	420		
+8	Oxazole-4-carboxylic acid 	azole	1355		
+8	Tele-8alpha-FAD histidine	FAD	50		
+8	N-methylphenylalanine	Methyl	34		
+8	N2-acetylarginine	Acetyl	1		
+8	Leucine methyl ester	Methyl	34		
+8	D-valine	NA	NA	stereoisomer	
+7	Cysteine methyl disulfide	b-methylthiol	39		
+7	Tryptophylquinone	quinone	392		
+7	5-methyloxazole-4-carboxylic acid 	azole	1355		
+7	GPI-anchor amidated asparagine	GPI-anchor	394		
+7	N-methylalanine	Methyl	34		
+7	D-tryptophan	NA	NA	stereoisomer	
+6	N5-methylglutamine	Methyl	34		
+6	S-8alpha-FAD cysteine	FAD	50		
+6	D-leucine	NA	NA	stereoisomer	
+6	Cysteine sulfinic acid (-SO2H)	dihydroxy	425		
+6	"2,3-didehydrotyrosine"	didehydro	401		
+6	Pros-methylhistidine	Methyl	34		
+6	S-(2-aminovinyl)-D-cysteine 	NA	NA	cross link	
+6	O-octanoyl serine	octanoyl	426		
+5	N6-myristoyl lysine	Myristoylation	45		
+5	D-allo-isoleucine	NA	NA	stereoisomer	
+5	Iodotyrosine	Iodination	129		
+5	"(E)-2,3-didehydrobutyrine"	Phospho+PL	23		
+5	3-hydroxytryptophan	Hydroxylation	35		
+5	"N,N-dimethylalanine"	di-Methylation	36		
+5	O-decanoyl serine	decanoyl	449		
+5	Aspartic acid 1-amide	Amide	2		
+5	3'-(S-cysteinyl)-tyrosine 	NA	NA	cross link	
+5	O-AMP-tyrosine	p-adenosine	405		
+5	GPI-anchor amidated aspartate	GPI-anchor	394		
+5	Lysinoalanine 	NA	NA	cross link	
+4	"4,5-dihydroxylysine"	dihydroxy	425		
+4	O-(5'-phospho-DNA)-serine	Phospho	21		
+4	5-methylarginine	Methyl	34		
+4	S-(4-hydroxycinnamyl)cysteine	hydroxycinnamyl	407		
+4	S-cysteinyl cysteine	Cysteinyl	312		
+4	Pros-8alpha-FAD histidine	FAD	50		
+4	Isoaspartyl lysine isopeptide 	NA	NA	cross link	
+4	2-iminomethyl-5-imidazolinone 	azole	1355	cross link	
+4	N-methylmethionine	Methyl	34		
+4	3-cysteinyl-aspartic acid 	NA	NA	cross link	
+4	Tryptophan tryptophylquinone 	Delta:H(-4)O(2)	1923		
+3	N6-formyllysine	Formyl	122		
+3	Aspartyl isopeptide	N-oxobutanoic	385		
+3	Glycyl adenylate	p-adenosine	405		
+3	3-methylthioaspartic acid	b-methylthiol	39		
+3	5-imidazolinone 	azole	1355		
+3	O-acetylthreonine	Acetyl	1		
+3	3-hydroxyvaline	Hydroxylation	35		
+3	1'-histidyl-3'-tyrosine 	NA	NA	cross link	
+3	Decarboxylated threonine	Asp->Ala	553		
+3	2-oxobutanoic acid	Pyro-glu	28		
+3	Sulfoserine	Sulfation	40		
+3	Aspartate 1-(chondroitin 4-sulfate)-ester	NA	NA		573.087393
+3	Lysine derivative	NA	NA	x	
+3	O-(5'-phospho-RNA)-tyrosine	Phospho	21		
+3	O-methylthreonine	Methyl	34		
+3	Lysine tyrosylquinone 	NA	NA	cross link	
+3	O-AMP-threonine	p-adenosine	405		
+3	N-methylproline	Methyl	34		
+3	3-phenyllactic acid	Deamidation	7		
+3	Methylhistidine	Methyl	34		
+3	Cysteine derivative	NA	NA	x	
+2	S-12-hydroxyfarnesyl cysteine	hydroxyfarnesyl	376		
+2	D-asparagine	NA	NA	stereoisomer	
+2	Oxazoline-4-carboxylic acid 	NA	NA	cross link	
+2	GPI-anchor amidated cysteine	GPI-anchor	394		
+2	O-(sn-1-glycerophosphoryl)serine	glycerophospho	419		
+2	"Cis-14-hydroxy-10,13-dioxo-7-heptadecenoic acid aspartate ester"	LTP1-lipid	434		
+2	Cholesterol glycine ester	C-cholesterol	432		
+2	"(3R,4S)-4-hydroxyisoleucine"	Hydroxylation	35		
+2	Lactic acid	lactic	403		
+2	2-(S-cysteinyl)pyruvic acid O-phosphothioketal	3-phosphoglyceryl	1387		
+2	N-acetyltyrosine	Acetyl	1		
+2	"(3R,4R)-4,5-dihydroxyisoleucine"	dihydroxy	425		
+2	D-threonine	NA	NA	stereoisomer	
+2	S-(dipyrrolylmethanemethyl)cysteine	dipyrrole	416		
+2	4'-cysteinyl-tryptophylquinone 	Delta:H(-4)O(2)	1923		
+2	O-palmitoyl threonine	Palmitoylation	47		
+2	S-stearoyl cysteine	NA	NA	lipid	
+2	Triiodothyronine	triiodo	397		
+2	Isoaspartyl cysteine isopeptide	Pyro-glu	28	cross link	
+2	"5-amino-piperideine-2,5-dicarboxylic acid"	NA	NA	cross link	
+2	L-allo-isoleucine	NA	NA	stereoisomer	
+2	5-methyloxazoline-4-carboxylic acid 	NA	NA	cross link	
+2	D-4-hydroxyvaline	Hydroxylation	35		
+2	Threonyl lysine isopeptide	NA	NA	cross link	
+2	Blocked carboxyl end 	NA	NA	x	
+2	4-cysteinyl-glutamic acid 	NA	NA	cross link	
+2	FMN phosphoryl threonine	FMN2	442		
+2	3'-nitrotyrosine	Nitro	354		
+2	O-(5'-phospho-RNA)-serine	Phospho	21		
+2	"N2,N2-dimethylarginine"	di-Methylation	36		
+2	Glycyl cysteine dithioester	NA	NA	cross link	
+2	5-methylthiazole-4-carboxylic acid 	NA	NA	cross link	
+1	GPI-like-anchor amidated asparagine	GPI-anchor	394		
+1	"N,N-dimethylserine"	di-Methylation	36		
+1	Methionine sulfone	dihydroxy	425		
+1	O-palmitoyl serine	Palmitoylation	47		
+1	3-hydroxyaspartate	Hydroxylation	35		
+1	Sulfothreonine	Sulfation	40		
+1	"(3S,4R)-3,4-dihydroxyisoleucine"	dihydroxy	425		
+1	Alanine isoaspartyl cyclopeptide 	NA	NA	cross link	
+1	S-6-FMN cysteine	FMN	409		
+1	Lysine methyl ester	Methyl	34		
+1	Tryptophan derivative	NA	NA	x	
+1	3-(S-cysteinyl)-tyrosine 	NA	NA	cross link	
+1	3-hydroxyphenylalanine	Hydroxylation	35		
+1	Beta-decarboxylated aspartate	Asp->Ala	553		
+1	2-cysteinyl-L-phenylalanine 	NA	NA	cross link	
+1	N-pyruvate 2-iminyl-cysteine	pyruv-iminyl	422		
+1	1-(tryptophan-3-yl)-tryptophan	NA	NA	cross link	
+1	Isoleucine derivative	NA	NA	x	
+1	5-(methoxymethyl)thiazole-4-carboxylic acid	NA	NA	cross link	
+1	6'-chlorotryptophan	Chlorination	936		
+1	(2-aminosuccinimidyl)acetic acid 	NA	NA	cross link	
+1	(4S)-thiazoline-4-carboxylic acid 	NA	NA	cross link	
+1	CysO-cysteine adduct	"	Cys->SecNEM:2H(5)"	1034		
+1	Cyclo[(prolylserin)-O-yl] cysteinate	Phospho+PL	23		
+1	N2-succinyltryptophan	Suc_anh_light	64		
+1	"3,4-dihydroxyarginine"	dihydroxy	425		
+1	S-bacillithiol cysteine disulfide	NA	NA		396.083866
+1	S-archaeol cysteine	S-archaeol	410		
+1	Aminomalonic acid 	Carbonyl	1918		
+1	N-formylglycine	Formyl	122		
+1	"(4R)-4,5-dihydroxyleucine"	dihydroxy	425		
+1	GPI-like-anchor amidated serine	GPI-anchor	394		
+1	N-methylleucine	Methyl	34		
+1	S-selanylcysteine	selenyl	423		
+1	O-UMP-tyrosine	p-uridine	417		
+1	5-glutamyl N2-lysine	Lys	1301		
+1	N6-murein peptidoglycan lysine	Cystine	374		
+1	"N,N,N-trimethylserine"	tri-Methylation	37		
+1	N-D-glucuronoyl glycine	N-glucuronyl	54		
+1	Isodityrosine 	NA	NA	cross link	
+1	2-cysteinyl-D-phenylalanine 	NA	NA	cross link	
+1	1-amino-2-propanone	a-type_Ion	140		
+1	Glycyl serine ester	NA	NA	cross link	
+1	Tele-8alpha-FMN histidine	FMN	409		
+1	N-(12-oxomyristoyl)cysteine	NA	NA	lipid	
+1	3'-histidyl-3-tyrosine	NA	NA	cross link	
+1	"3'-geranyl-2',N2-cyclotryptophan"	NA	NA	lipid	
+1	Arginine derivative	NA	NA	x	
+1	2-methylglutamine	Methyl	34		
+1	Glutamine derivative	NA	NA	x	
+1	O-(2-cholinephosphoryl)serine	NA	NA	*	166.062756
+1	N-carbamoylalanine	Carbamyl	5		
+1	N6-1-carboxyethyl lysine	carboxyethyl	378		
+1	S-(coelenterazin-3a-yl)cysteine	NA	NA	*	421.142641
+1	5-glutamyl 2-aminoadipic acid	NEMhyd	320		
+1	3-(O4'-tyrosyl)-valine 	NA	NA	cross link	
+1	ADP-ribosylasparagine	ADP-Ribose	213		
+1	2'-methylsulfonyltryptophan	NA	NA	*	77.97755
+1	O-8alpha-FAD tyrosine	FAD	50		
+1	4-hydroxyglutamate	Hydroxylation	35		
+1	GPI-anchor amidated alanine	GPI-anchor	394		
+1	Isoaspartyl glycine isopeptide	NA	NA	cross link	
+1	Serine microcin E492 siderophore ester	microcin	448		
+1	"N,N-dimethylleucine"	di-Methylation	36		
+1	Bromohistidine	bromo	340		
+1	2-cysteinyl-D-allo-threonine 	NA	NA	cross link	
+1	"4,5,5'-trihydroxyleucine"	Cysteic_acid	345		
+1	Aspartyl aldehyde	semialdehyde	447		
+1	Thiazoline-4-carboxylic acid 	NA	NA	cross link	
+1	O-octanoyl threonine	octanoyl	426		
+1	N-pyruvate 2-iminyl-valine	pyruv-iminyl	422		
+1	N-palmitoyl glycine	Palmitoylation	47		
+1	4-hydroxyarginine	Hydroxylation	35		
+1	Isoglutamyl glycine isopeptide	NA	NA	cross link	
+1	N-methylserine	Methyl	34		
+1	"Tele-(1,2,3-trihydroxypropan-2-yl)histidine"	NA	NA		90.031694
+1	5-hydroxy-3-methylproline 	Pyroglutamic	359		
+1	O-(2-aminoethylphosphoryl)serine	GPI-anchor	394		
+1	O-decanoyl threonine	decanoyl	449		
+1	Methionine derivative	NA	NA	x	
+1	Aspartic acid 1-[(3-aminopropyl)(5'-adenosyl)phosphono]amide	C-Asn-deriv	437		
+1	GPI-anchor amidated glycine	GPI-anchor	394		
+1	N-[(12R)-12-hydroxymyristoyl]cysteine	NA	NA	lipid	
+1	"N,N-(cysteine-1,S-diyl)serine "	NA	NA	cross link	
