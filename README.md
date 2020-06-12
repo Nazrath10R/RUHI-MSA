@@ -148,21 +148,33 @@ Rscript ideogram.R
 ```
 
 
-## bar chart data 
+----------------
+### 4. Run RetroMiner
 
-<span style="color:blue">Apocrita</span>
+<span style="color:blue"><!-- DropBox --></span>
 
-on Apocrita /outputs/
+To run RetroMiner the only command needed is:
 
 ```
-du -sh *
+sh retrominer.sh [PXD00xxxx] [ANALYSIS] [THREADS]
 ```
-use this to write all files into one file and call it sizes.txt
 
-move to dropbox
+where ANALYSIS = 1 (frontend5) ; 2 (frontend6) ; 3 (sm11)
 
-make a matrix with sizes and PXDs
-```
-Rscript sizes.R
-```
+and THREADS = number of cpu cores to use
+
+Please be considerate when using shared nodes and use [htop](https://hisham.hm/htop/) to monitor other users and jobs.
+
+If no arguments are input, the usage is displayed in the terminal (or -h is used)
+Using -i, loads up the interactive version guiding you through the input arguments
+
+All proteomic outputs are stored in outputs/PXD00xxxx/ and protein tables in reports/PXD00xxxx/
+
+Also find any filtered protein outputs in results/PXD00xxxx/ 
+
+All console output is written into log files (see logs/PXD00xxxx/) 
+
+Please use RetroMiner_to_RTPEA (ref) for downstream conversion into jSON files and database population
+as well as creating Rdata tables for easier visualisations.
+
 
