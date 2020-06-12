@@ -8,6 +8,23 @@ The last script of RetroMiner is "Data_filtering.sh", which uses a custom versio
 
 ![alt text](https://github.com/Nazrath10R/RetroMiner_to_RTPEA/blob/master/images/RetroMiner%20to%20RTPEA.png)
 
+
+### Softwares 
+
+* ***SearchGUI*** - http://compomics.github.io/projects/searchgui.html
+* ***PeptideShaker*** - http://compomics.github.io/projects/peptide-shaker.html
+
+will be downloaded with the installation
+
+## Prerequisites
+
+| **Platform** | **Languages** | **source**  |	**info**	|	
+|----------|--------|-------------|--------------|
+| Linux    | bash   | [jq](https://stedolan.github.io/jq/) for bash      | 'sudo apt-get install jq' (linux) or 'brew install jq'	|
+| Mac      | R      | [ssh_keys](https://www.digitalocean.com/community/tutorials/-to-configure-ssh-key-based-authentication-on-a-linux-server) for HPC |	follow instructions for your own HPC	|
+
+
+
 ### Get RT data out - create_results_table.sh (working)
 
 <span style="color:blue">Apocrita</span>
