@@ -2143,4 +2143,4 @@ LTADLLAETLQAR	0.0002	707.898	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	
 REWGPIFNILK	-0.0002	458.262	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	pyruvicC	
 NQQSLQEIWDYVK	0.0736	825.945	0.0694122	41.2256	Pyro_glu	Pyro_glu	di-Methylation	tri-Methylation	DehydroalaC	
 NQQSLQEIWDYVK	0.0736	825.945	0.0694122	41.2256	Pyro_glu	Pyro_glu	di-Methylation	tri-Methylation	DehydroalaC	
-Elapsed time is : 86.326567 s
+Elapsed time is : 83.184734 s

@@ -10,8 +10,6 @@
 
 
 //=======================================================================================================//
-
-
 using namespace std;
 
 
@@ -23,7 +21,8 @@ int main(int argc, char** argv) {
 	 */ 
 	auto start = chrono::steady_clock::now();
 	float tolerance {};
-
+	
+	
 
 	//setting user argument options (file to analyse and tolerance)
 	string sample {};
@@ -47,8 +46,14 @@ int main(int argc, char** argv) {
 		exit(1);
 	}
 
-	cout << "Tolerance: " << tolerance << " \nFilename: " << sample << endl;
+
 	
+//printing logo	
+	ifstream f("../logo.txt");
+    if (f.is_open())
+        std::cout << f.rdbuf();
+
+	cout << endl << "Tolerance: " << tolerance << " \nFilename: " << sample << endl;
 	//--------------------------Setting paths------------------------------------------//
 	
 	//string sample = "JOHNPP_l1";
@@ -58,8 +63,10 @@ int main(int argc, char** argv) {
 	//float tol = tolerance;
 	//string tole = to_string(tol); //just for testing different tolerances
 
-	//================================| Input |================================//
 
+	//================================| Input |================================//
+	
+                                                       
 	
 	//// PTM masses and probabilities
 
@@ -79,7 +86,7 @@ int main(int argc, char** argv) {
 
 	// null probability for no matches (last new vector position)
 	prob[list_end] = 0;
-	cout << masses[0] << " and " << masses[PTM_list-1] << " and " << prob[PTM_list-1] << " " << prob[PTM_list] << endl;
+	//cout << masses[0] << " and " << masses[PTM_list-1] << " and " << prob[PTM_list-1] << " " << prob[PTM_list] << endl;
 	
 	//// Natural frequency masses and probabilities
 
@@ -125,6 +132,7 @@ int main(int argc, char** argv) {
 	//reading Peptide data: sequence, Mass_shift and peptide Mass
 	ifstream inputPeptideData;
 	inputPeptideData.open(input_path);
+	
 
 	string peptide;
 	float mass_shift;
