@@ -11,6 +11,7 @@ display_usage() {
   echo -e "OUTPUT  = name of the output file"
   echo
 
+<<<<<<< HEAD
 }
 
 if [[ ( $1 == "--help") || ($1 == "-h") ]]
@@ -124,3 +125,10 @@ Rscript ./scripts/PTMs_results_plot.R $PSM
 echo
 echo "Plot with PTMs present in:"
 echo " ./Results/Myplots/"$PSM"_PTMs.pdf"
+=======
+# 1) compiling
+g++ -std=c++17 main_pedro.cpp
+# 2) running it
+./a.out file_to_analyze set_tolerance(default=10)  #running it
+
+>>>>>>> 2b85cd8916f19bf020b579344fe75be6bc9a88be
