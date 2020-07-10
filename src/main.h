@@ -138,28 +138,26 @@ int binarySearchLargerElement( float masses[], const float &mass_shift, const in
 		return (resultantIndex);
 }
 
-std::tuple<vector<int>*, vector<int>*, int*> finding1PTM ( float masses [],float prob [], const int &PTM_list, const float &mass_shift_lower, const float &mass_shift_upper) {
+std::tuple<int, vector<int>*, int*> finding1PTM ( float masses [],float prob [], const int &PTM_list, const float &mass_shift_lower, const float &mass_shift_upper) {
 		
-		vector<int> highest_prob_pos_1 {PTM_list-1};
-		
-		
+		int highest_prob_pos_1 {PTM_list};
 		//Storing all possible PTMs on position_combination1
-		vector<int> position_combination1 =  binarySearch(masses, PTM_list, mass_shift_lower, mass_shift_upper); //all PTMs that are withing our tolerance
+		vector<int> position_combination1 = binarySearch(masses, PTM_list, mass_shift_lower, mass_shift_upper); //all PTMs that are withing our tolerance
 		int pos_length = position_combination1.size(); 		
 		if (pos_length > 1) //checking which of the PTMs is more probable and storing
 			for ( size_t i {0}; i < pos_length; i++) { //
-					//cout << position_combination1[i] << " is the position! The number is " << masses[position_combination1[i]] 
-					//cout << " that is bigger than " << mass_shift_lower << " and lower than " << mass_shift_upper << endl;
-					if (prob[position_combination1[i]] >= prob[highest_prob_pos_1[0]])
-						highest_prob_pos_1[0] = position_combination1[i];
+					//cout << "-----------" << position_combination1[i] << " is the position! The number is " << masses[position_combination1[i]] 
+					//cout << "-------------"<< " that is bigger than " << mass_shift_lower << " and lower than " << mass_shift_upper << endl;
+					if (prob[position_combination1[i]] >= prob[highest_prob_pos_1])
+						highest_prob_pos_1 = position_combination1[i];
 			}
 		else if (pos_length ==1) {
-			highest_prob_pos_1[0] = position_combination1[0];
+			highest_prob_pos_1 = position_combination1[0];
 		}
 		else {
 			//cout << "\n" <<  "The mass shift can not be explained by 1 PTM " << endl;
 		}
-		return {&highest_prob_pos_1, &position_combination1, &pos_length};
+		return {highest_prob_pos_1, &position_combination1, &pos_length};
 }
 
 
