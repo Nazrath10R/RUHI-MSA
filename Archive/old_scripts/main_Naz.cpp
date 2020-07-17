@@ -74,8 +74,8 @@ int main( ) {
 
 	// number of lines in input file
 	//
-	int lines;
-	string s;
+	int lines {};
+	string s {};
 
 	ifstream inputFile;
 	inputFile.open(input_path);
