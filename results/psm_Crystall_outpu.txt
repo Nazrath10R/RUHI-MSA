@@ -649,4 +649,4 @@ DFSALESQLQDTQELLQEENR	64.9906	2557.16	64.9789	50.8755	Acetyl	Acetyl	Hydroxylatio
 VIQNEFTVGEECELETMTGEK	1.0023	2459.09	0.984016	11.325	Deamidation	
 RPCFSALEVDETYVPKEFNAETFTFHADICTLSEK	46.0082	4196.94	45.983	53.272	Deamidation	Deamidation	Deamidation	Deamidation	tri-Methylation	
 RPCFSALEVDETYVPKEFNAETFTFHADICTLSEK	46.0082	4196.94	45.983	53.272	Deamidation	Deamidation	Deamidation	Deamidation	tri-Methylation	
-Elapsed time is : 52.640450 s
+Elapsed time is : 50.768259 s

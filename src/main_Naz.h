@@ -9,6 +9,7 @@
 #ifndef main_Naz_h
 #define main_Naz_h
 
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -17,6 +18,9 @@
 #include <algorithm>
 #include <math.h>
 #include <chrono>
+#include <tuple>
+#include <sstream>
+#include <cstdlib>
 
 float* openFile(std::string path, int PTM_list);
 

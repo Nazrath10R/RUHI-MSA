@@ -1,7 +1,6 @@
 
 /*  main.cpp
     RUHI-MSA
-
     Created by Nazrath Nawaz on 28/08/2019.
     Developed by Pedro Cardoso on 09/06/2020.
     Copyright © 2019 Nazrath Nawaz. All rights reserved.
@@ -156,7 +155,7 @@ int main(int argc, char** argv) {
 	while (!inputPeptideData.eof()) {
 		//================================//
 		
-		inputPeptideData >> peptide >> peptide_mass >> mass_shift;
+		inputPeptideData >> peptide >> mass_shift >> peptide_mass;
 		
 
         // Defining mass error
@@ -181,7 +180,7 @@ int main(int argc, char** argv) {
 
 
 		// null vector of probability positions to populate
-		vector<int> highest_prob_pos (5,list_end);
+		int highest_prob_pos [] {list_end,list_end,list_end,list_end,list_end};
 		//	vector<int> *highest_prob_pos_1 = new vector<int>();
 
 		// number of loops to attempt counter
@@ -375,8 +374,8 @@ int main(int argc, char** argv) {
 		//––––––––––––––––––––––––––//
 
 		if (combination == 0 && number_of_possible_ptms == 6) {
-
-//        cout << "4 PTMs (Alternative)...";
+		
+        cout << "4 PTMs (Alternative)...";
 			//
 			//auto [highest_prob_pos_4, combination_4] = findingCombinationOf4PTM_inprogress(masses, prob, PTM_list, mass_shift_lower, mass_shift_upper);
 			
@@ -565,118 +564,118 @@ int main(int argc, char** argv) {
 		//================================| Alt Output |================================//
 		
 		//getting prob and PTM that can explain the mass shift by 1PTM
-		float prob_1PTM {};
-		string onePTM {"NA"};
-		
-		if (combination_1 > 0) {
-			int l = 1 + highest_prob_pos_1_ptr;
-			//cout << "l is" << l << "\t";
-			fstream PTMnames;
-			PTMnames.open(dir_path + libs + "names.txt");
-			GotoLine(PTMnames, l);
-			string line;
-			PTMnames >> line;
-			onePTM = line;
-			//cout << line << "\n";
-			prob_1PTM = prob_average_1;
-		}
-		
-		//getting prob and PTM that can explain the mass shift by 2 PTMs
-		vector<string> PTMtwo {"NA","NA"};
-		float prob_2PTM {};
-		if (combination_2 > 0) {
-			fstream PTMnames;
-			PTMnames.open(dir_path + libs + "names.txt");
-			GotoLine(PTMnames, 1 + highest_prob_pos_2[0]);
-			string line {};
-			PTMnames >> line;
-			PTMtwo[0]=line;
-			GotoLine(PTMnames, 1 + highest_prob_pos_2[1]);
-			PTMnames >> line;
-			PTMtwo[1]=line;
-			prob_2PTM = prob_average_2;
-		} 
-
-		
-		//geting 3 mass shift explained by 3 PTMs
-		vector<string> PTMthree {"NA","NA","NA"};
-		float prob_3PTM {};
-		if (combination_3 > 0) {
-			fstream PTMnames;
-			PTMnames.open(dir_path + libs + "names.txt");
-			GotoLine(PTMnames, 1 + highest_prob_pos_3[0]);
-			string line;
-			PTMnames >> line;
-			PTMthree[0]=line;
-			GotoLine(PTMnames, 1 + highest_prob_pos_3[1]);
-			PTMnames >> line;
-			PTMthree[1]=line;
-			GotoLine(PTMnames, 1 + highest_prob_pos_3[2]);
-			PTMnames >> line;
-			PTMthree[2]=line;
-			prob_3PTM = prob_average_3;
-		}
-		
-		//geting 4 mass shift explained by 3 PTMs
-		vector<string> PTMfour {"NA","NA","NA","NA"};
-		float prob_4PTM {};
-		if (combination_4 > 0) {
-			fstream PTMnames;
-			PTMnames.open(dir_path + libs + "names.txt");
-			GotoLine(PTMnames, 1 + highest_prob_pos_4[0]);
-			string line;
-			PTMnames >> line;
-			PTMfour[0]=line;
-			GotoLine(PTMnames, 1 + highest_prob_pos_4[1]);
-			PTMnames >> line;
-			PTMfour[1]=line;
-			GotoLine(PTMnames, 1 + highest_prob_pos_4[2]);
-			PTMnames >> line;
-			PTMfour[2]=line;
-			GotoLine(PTMnames, 1 + highest_prob_pos_4[3]);
-			PTMnames >> line;
-			PTMfour[3]=line;
-			prob_4PTM = prob_average_4;
-		}
-		
-		//geting 5 mass shift explained by 3 PTMs
-		
-		vector<string> PTMfive {"NA","NA","NA","NA","NA"};
-		float prob_5PTM {};
-		if (combination_5 > 0) {
-			fstream PTMnames;
-			PTMnames.open(dir_path + libs + "names.txt");
-			GotoLine(PTMnames, 1 + highest_prob_pos_5[0]);
-			string line;
-			PTMnames >> line;
-			PTMfive[0]=line;
-			GotoLine(PTMnames, 1 + highest_prob_pos_5[1]);
-			PTMnames >> line;
-			PTMfive[1]=line;
-			GotoLine(PTMnames, 1 + highest_prob_pos_5[2]);
-			PTMnames >> line;
-			PTMfive[2]=line;
-			GotoLine(PTMnames, 1 + highest_prob_pos_5[3]);
-			PTMnames >> line;
-			PTMfive[3]=line;
-			GotoLine(PTMnames, 1 + highest_prob_pos_5[4]);
-			PTMnames >> line;
-			PTMfive[4]=line;
-			prob_5PTM = prob_average_5;
-		}
-		
-		
-		//// write alternative outputs into files
-	
-		alt_output_file.open(alt_output_file_path, ios::out | ios::app); //ios::app to open file in append mode
-		alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << peptide_mass << "\t" 
-							 << prob_1PTM << "\t" << onePTM << "\t"
-						<< prob_2PTM << "\t" << PTMtwo[0] << " | " << PTMtwo[1] << "\t"
-					<< prob_3PTM << "\t" << PTMthree[0] << " | " << PTMthree[1] << " | " << PTMthree[2] << "\t"
-				<< prob_4PTM << "\t" << PTMfour[0] << " | " << PTMfour[1] << " | " << PTMfour[2] << " | " << PTMfour[3] << "\t"
-			<< prob_5PTM << "\t" << PTMfive[0] << " | " << PTMfive[1] << " | " << PTMfive[2] << " | " << PTMfive[3] << " | " << PTMfive[4] << "\t";
-
-		alt_output_file.close();
+//		float prob_1PTM {};
+//		string onePTM {"NA"};
+//		
+//		if (combination_1 > 0) {
+//			int l = 1 + highest_prob_pos_1_ptr;
+//			//cout << "l is" << l << "\t";
+//			fstream PTMnames;
+//			PTMnames.open(dir_path + libs + "names.txt");
+//			GotoLine(PTMnames, l);
+//			string line;
+//			PTMnames >> line;
+//			onePTM = line;
+//			//cout << line << "\n";
+//			prob_1PTM = prob_average_1;
+//		}
+//		
+//		//getting prob and PTM that can explain the mass shift by 2 PTMs
+//		string PTMtwo [] {"NA","NA"};
+//		float prob_2PTM {};
+//		if (combination_2 > 0) {
+//			fstream PTMnames;
+//			PTMnames.open(dir_path + libs + "names.txt");
+//			GotoLine(PTMnames, 1 + highest_prob_pos_2[0]);
+//			string line {};
+//			PTMnames >> line;
+//			PTMtwo[0]=line;
+//			GotoLine(PTMnames, 1 + highest_prob_pos_2[1]);
+//			PTMnames >> line;
+//			PTMtwo[1]=line;
+//			prob_2PTM = prob_average_2;
+//		} 
+//
+//		
+//		//geting 3 mass shift explained by 3 PTMs
+//		string PTMthree [] {"NA","NA","NA"};
+//		float prob_3PTM {};
+//		if (combination_3 > 0) {
+//			fstream PTMnames;
+//			PTMnames.open(dir_path + libs + "names.txt");
+//			GotoLine(PTMnames, 1 + highest_prob_pos_3[0]);
+//			string line;
+//			PTMnames >> line;
+//			PTMthree[0]=line;
+//			GotoLine(PTMnames, 1 + highest_prob_pos_3[1]);
+//			PTMnames >> line;
+//			PTMthree[1]=line;
+//			GotoLine(PTMnames, 1 + highest_prob_pos_3[2]);
+//			PTMnames >> line;
+//			PTMthree[2]=line;
+//			prob_3PTM = prob_average_3;
+//		}
+//		
+//		//geting 4 mass shift explained by 3 PTMs
+//		string PTMfour [] {"NA","NA","NA","NA"};
+//		float prob_4PTM {};
+//		if (combination_4 > 0) {
+//			fstream PTMnames;
+//			PTMnames.open(dir_path + libs + "names.txt");
+//			GotoLine(PTMnames, 1 + highest_prob_pos_4[0]);
+//			string line;
+//			PTMnames >> line;
+//			PTMfour[0]=line;
+//			GotoLine(PTMnames, 1 + highest_prob_pos_4[1]);
+//			PTMnames >> line;
+//			PTMfour[1]=line;
+//			GotoLine(PTMnames, 1 + highest_prob_pos_4[2]);
+//			PTMnames >> line;
+//			PTMfour[2]=line;
+//			GotoLine(PTMnames, 1 + highest_prob_pos_4[3]);
+//			PTMnames >> line;
+//			PTMfour[3]=line;
+//			prob_4PTM = prob_average_4;
+//		}
+//		
+//		//geting 5 mass shift explained by 3 PTMs
+//		
+//		string PTMfive [] {"NA","NA","NA","NA","NA"};
+//		float prob_5PTM {};
+//		if (combination_5 > 0) {
+//			fstream PTMnames;
+//			PTMnames.open(dir_path + libs + "names.txt");
+//			GotoLine(PTMnames, 1 + highest_prob_pos_5[0]);
+//			string line;
+//			PTMnames >> line;
+//			PTMfive[0]=line;
+//			GotoLine(PTMnames, 1 + highest_prob_pos_5[1]);
+//			PTMnames >> line;
+//			PTMfive[1]=line;
+//			GotoLine(PTMnames, 1 + highest_prob_pos_5[2]);
+//			PTMnames >> line;
+//			PTMfive[2]=line;
+//			GotoLine(PTMnames, 1 + highest_prob_pos_5[3]);
+//			PTMnames >> line;
+//			PTMfive[3]=line;
+//			GotoLine(PTMnames, 1 + highest_prob_pos_5[4]);
+//			PTMnames >> line;
+//			PTMfive[4]=line;
+//			prob_5PTM = prob_average_5;
+//		}
+//		
+//		
+//		//// write alternative outputs into files
+//	
+//		alt_output_file.open(alt_output_file_path, ios::out | ios::app); //ios::app to open file in append mode
+//		alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << peptide_mass << "\t" 
+//							 << prob_1PTM << "\t" << onePTM << "\t"
+//						<< prob_2PTM << "\t" << PTMtwo[0] << " | " << PTMtwo[1] << "\t"
+//					<< prob_3PTM << "\t" << PTMthree[0] << " | " << PTMthree[1] << " | " << PTMthree[2] << "\t"
+//				<< prob_4PTM << "\t" << PTMfour[0] << " | " << PTMfour[1] << " | " << PTMfour[2] << " | " << PTMfour[3] << "\t"
+//			<< prob_5PTM << "\t" << PTMfive[0] << " | " << PTMfive[1] << " | " << PTMfive[2] << " | " << PTMfive[3] << " | " << PTMfive[4] << "\t";
+//
+//		alt_output_file.close();
 	
 	} //loop finished
 	
@@ -708,5 +707,3 @@ int main(int argc, char** argv) {
 
 //a->push_back(3);
 //cout << "here " << a->at(0);
-
-

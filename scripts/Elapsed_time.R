@@ -1,18 +1,17 @@
 install.packages("ggplot2")
 library(ggplot2)
 
-df <- read.csv("/Users/pedrocardoso/Documents/PTMs project/elapsed_time.csv", sep = ";")
+df <- read.csv("/Users/pedrocardoso/Documents/PTMs_project/elapsed_time.csv", sep = ";")
 
 
-binarysearch <- subset(df, df$Step > 0 & df$Step <6) #obtaining different rows where "Step" is less than 3
+binarysearch <- subset(df, df$Step > 0 & df$Step <11) #obtaining different rows where "Step" is less than 3
 
 ggplot(binarysearch, aes(x=Step, y=Cumulative_time, group=Algorithm, color=Algorithm))+
 geom_line(size=0.3) + geom_point(size= 0.3) +
 theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
- scale_x_continuous(breaks = c(1,2,3,4,5,6,7,8,9),
+ scale_x_continuous(breaks = c(1,2,3,4,5,6),
 labels = c("reading file", "Binary search (1 PTM)", "loop search control (2PTM)",
-"loop search control (3PTM)", "join 2 and 3 PTM search", "loop search control (4PTM)",
- "join 4 and 5 natural PTM search", "removing search control", "join 4 and 5 PTM search")) +
+"loop search control (3PTM)", "join 2 and 3 PTM search", "loop search control (4PTM)", )) +
 labs(y= "Time (seconds)", x = "Improvement steps") + ggtitle("Execution time") +
 theme(axis.title = element_text(size=14, face="bold"),
       axis.text = element_text(size=12),

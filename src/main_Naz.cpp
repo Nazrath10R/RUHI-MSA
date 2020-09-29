@@ -10,6 +10,7 @@
 
 #include "main_Naz.h"
 
+
 //=======================================================================================================//
 
 //template<typename T, size_t n>
@@ -61,11 +62,39 @@ float* openFile(string path, int length) {
 
 
 
-int main( ) {
+int main(int argc, char** argv) {
 
-	string sample = "JOHNPP_l1";
+	//start timer
+	auto start = chrono::steady_clock::now();
+	
+//	string sample = "TP_l1";
+    float tolerance {};
+	
+	
 
-	string dir_path = "/Users/pedrocardoso/Documents/RUHI-MSA/";
+	//setting user argument options (file to analyse and tolerance)
+	string sample {};
+	if (argc ==1) {
+		cout << "at least one argument (sample name) is necessary" << endl;
+		exit(1);
+	}
+	else if (argc < 3) {
+		tolerance = 10.0; // tolerance default is 10
+		sample = argv[1];
+	} 
+	else if (argc < 4) {
+		stringstream convert {argv[2]};
+		if (!(convert >> tolerance)) { // converting agrv[2] to float
+			cout << "Please insert a valid tolerance (must be an integer)" << endl;
+		}
+		sample = argv[1];
+	}
+	else {
+		cout << "This program only takes 2 arguments" << endl;
+		exit(1);
+	}
+    
+	string dir_path = "./";
 	string input_path = dir_path + "input/" + sample + ".txt";
 
 
@@ -74,14 +103,14 @@ int main( ) {
 
 	// number of lines in input file
 	//
-	int lines;
-	string s;
+	int lines {};
+	string s {};
 
 	ifstream inputFile;
 	inputFile.open(input_path);
 
 	if (!inputFile) {
-		//cout << "no file" << "\n" << "double check in: " << input_path << "\n";
+		cout << "no file" << "\n" << "double check in: " << input_path << "\n";
 		exit(-1);
 	}
 
@@ -110,10 +139,10 @@ int main( ) {
 	//// UniMod masses and probabilities
 
 	// mass shift array
-	float* masses = openFile(dir_path + "libs/new_masses.txt", PTM_list);
+	float* masses = openFile(dir_path + "libs/masses.txt", PTM_list);
 
 	// Probabilities array
-	float* prob = openFile(dir_path + "libs/new_prob.txt", PTM_list);
+	float* prob = openFile(dir_path + "libs/prob.txt", PTM_list);
 
 	// null probability for no matches (last new vector position)
 	prob[list_end] = 0;
@@ -122,18 +151,18 @@ int main( ) {
 	//// Natural frequency masses and probabilities
 
 	// Nat probabilities array
-	float* nat_prob = openFile(dir_path + "libs/new_nat_prob.txt", nat_list);
+	float* nat_prob = openFile(dir_path + "libs/nat_prob.txt", nat_list);
 
 	nat_prob[nat_end] = 0;
 
 	// Nat masses array
-	float* nat_masses = openFile(dir_path + "libs/new_nat_masses.txt", nat_list);
+	float* nat_masses = openFile(dir_path + "libs/nat_masses.txt", nat_list);
 
 
 	// Nat names array
 	string nat_names[nat_list];
 	ifstream fakeNames;
-	fakeNames.open(dir_path + "libs/new_nat_names.txt");
+	fakeNames.open(dir_path + "libs/nat_names.txt");
 
 	int names_count = 0;
 	while (!fakeNames.eof()) {
@@ -147,11 +176,16 @@ int main( ) {
 
 	//-------------------------------------------------------//
 
+	string output_file_path = dir_path + "Results/" + sample + "_output_Naz.txt";
 
+	ofstream output_file;
+	output_file.open(output_file_path, ios::out);
+	
+	output_file.close();
 
 
 	//================================| Peptide - Mass Shift |================================//
-	int count {0};
+
 
 	for (int x = 1; x <= lines; x += 3) {
 
@@ -190,7 +224,7 @@ int main( ) {
         
 		//================================//
 
-		string output_file_path = dir_path + "results/" + sample + "_output.txt";
+		//string output_file_path = dir_path + "Results/" +sample + "_output_Naz.txt";
 
 		// int break_scenario=0;
 
@@ -210,8 +244,7 @@ int main( ) {
 
 		//=======================================================================================================//
 
-		// start timer
-		auto start = chrono::steady_clock::now();
+
 
 		// null vector of probability positions to populate
 
@@ -228,7 +261,7 @@ int main( ) {
 		//––––––––| 1 PTM |–––––––––//
 		//––––––––––––––––––––––––––//
 
-		//    cout << "1 PTM...";
+		//    //cout << "1 PTM...";
 
 		vector<int> highest_prob_pos_1 = {list_end};
 
@@ -262,15 +295,15 @@ int main( ) {
 		} else { number_of_possible_ptms++; }
 
 
-		count++;
-		cout << count << endl;
+
+
 		//--------------------------------------------------------------------------------------------------//
 
 		//––––––––––––––––––––––––––//
 		//––––––––| 2 PTMs |––––––––//
 		//––––––––––––––––––––––––––//
 
-//    	cout << "2 PTMs...";
+//    	//cout << "2 PTMs...";
 		vector<int> highest_prob_pos_2 = {list_end, list_end};
 		int combination_2 = 0;
 
@@ -290,7 +323,7 @@ int main( ) {
 						break;
 					}
 
-//                 cout << masses[j] << " " << masses[k] << "\n";
+//                 //cout << masses[j] << " " << masses[k] << "\n";
 					if (prob[j] + prob[k] >= prob[highest_prob_pos_2[0]] + prob[highest_prob_pos_2[1]]) {
 						highest_prob_pos_2[0] = j; highest_prob_pos_2[1] = k;
 					}
@@ -326,7 +359,7 @@ int main( ) {
 		//––––––––| 3 PTMs |––––––––//
 		//––––––––––––––––––––––––––//
 
-//     cout << "3 PTMs...";
+//     //cout << "3 PTMs...";
 
 		vector<int> highest_prob_pos_3 = {list_end, list_end, list_end};
 		int combination_3 = 0;
@@ -355,7 +388,7 @@ int main( ) {
 
 							if (prob[i] + prob[j] + prob[k] >= prob[highest_prob_pos_3[0]] + prob[highest_prob_pos_3[1]] + prob[highest_prob_pos_3[2]]) {
 								highest_prob_pos_3[0] = i; highest_prob_pos_3[1] = j; highest_prob_pos_3[2] = k;
-//                            cout << masses[i] << " " << masses[j] << " " << masses[k] << "\n";
+//                            //cout << masses[i] << " " << masses[j] << " " << masses[k] << "\n";
 							}
 							combination_3++;
 						}
@@ -432,13 +465,13 @@ int main( ) {
 		//––––––––| 4 PTMs |––––––––//
 		//––––––––––––––––––––––––––//
 
-//    cout << "4 PTMs...";
+//    //cout << "4 PTMs...";
 		// zero prob event
 		vector<int> highest_prob_pos_4 = {nat_end, nat_end, nat_end, nat_end};
 		int combination_4 = 0;
 
 
-		//    cout <<nat_prob_length<< endl;
+		//    //cout <<nat_prob_length<< endl;
 
 		for (int x = 0; x < nat_prob_length; x++) {
 
@@ -513,7 +546,7 @@ int main( ) {
 		//––––––––| 5 PTMs |––––––––//
 		//––––––––––––––––––––––––––//
 
-//    cout << "5 PTMs...";
+//    //cout << "5 PTMs...";
 		// zero prob event
 		vector<int> highest_prob_pos_5 = {nat_end, nat_end, nat_end, nat_end, nat_end};
 		int combination_5 = 0;
@@ -587,12 +620,12 @@ int main( ) {
 
 		if (combination == 0 && number_of_possible_ptms == 6) {
 
-//        cout << "4 PTMs (Alternative)...";
+        cout << "4 PTMs (Alternative)...";
 
 			number_of_possible_ptms = 4;
 
 
-			// cout << "4 PTMs...";
+			// //cout << "4 PTMs...";
 			vector<int> highest_prob_pos_4 = {list_end, list_end, list_end, list_end};
 			int combination_4 = 0;
 
@@ -623,7 +656,7 @@ int main( ) {
 
 									if (prob[y] + prob[i] + prob[j] + prob[k] >= prob[highest_prob_pos_4[0]] + prob[highest_prob_pos_4[1]] + prob[highest_prob_pos_4[2]] + prob[highest_prob_pos_4[3]]) {
 										highest_prob_pos_4[0] = y; highest_prob_pos_4[1] = i; highest_prob_pos_4[2] = j; highest_prob_pos_4[3] = k;
-										//                            cout << masses[i] << " " << masses[j] << " " << masses[k] << "\n";
+										//                            //cout << masses[i] << " " << masses[j] << " " << masses[k] << "\n";
 									}
 									combination_4++;
 								}
@@ -646,8 +679,8 @@ int main( ) {
 							while (masses[y] + masses[i] + masses[j] + masses[k] >= mass_shift_lower && k >= 0) {
 
 								float sum = roundf((masses[y] + masses[i] + masses[j] + masses[k])*10000)/10000;
-								//                    cout << k << "\n";
-								//                    cout << sum << endl;
+								//                    //cout << k << "\n";
+								//                    //cout << sum << endl;
                                 if ((sum <= mass_shift_upper) && (sum >= mass_shift_lower)) {
 
 									// masses that cancel each other
@@ -655,7 +688,7 @@ int main( ) {
 									    (masses[i] + masses[j] == 0) || (masses[i] + masses[k] == 0) || (masses[j] + masses[k] == 0)) {
 										break;
 									}
-									//                        cout << masses[i] << " " << masses[j] << " " << masses[k] << "\n";
+									//                        //cout << masses[i] << " " << masses[j] << " " << masses[k] << "\n";
 
 									if (prob[y] + prob[i] + prob[j] + prob[k] >= prob[highest_prob_pos_4[0]] + prob[highest_prob_pos_4[1]] + prob[highest_prob_pos_4[2]] + prob[highest_prob_pos_4[3]]) {
 										highest_prob_pos_4[0] = y; highest_prob_pos_4[1] = i; highest_prob_pos_4[2] = j; highest_prob_pos_4[3] = k;
@@ -718,16 +751,7 @@ int main( ) {
 
 		//================================| Output |================================//
 
-		// timer
-		auto end = chrono::steady_clock::now();
-		auto diff = end - start;
-		string elapsed_time;
-
-		if (chrono::duration <double, milli> (diff).count() < 1) {
-			elapsed_time = to_string(chrono::duration <double, milli> (diff).count()) + " ms";
-		} else {
-			elapsed_time = to_string(chrono::duration <double, milli> (diff).count() / 1000) + " s";
-		}
+		
 
 		//// print output combination stats
 		//cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << "\n\n";
@@ -737,14 +761,14 @@ int main( ) {
 		//cout << "=======================================================================" << "\n" << "\n";
 
 
-//    cout << prob_average_3 << " " <<prob_average_4 << "\n";
+   // cout << prob_average_3 << " " <<prob_average_4 << "\n";
 		vector<string> out_name;
 
 		//// 1-3 PTMs
 		if (more_than_3 <= 3) {
 			//// print PTM names from file
 			fstream inputPTMnames;
-			inputPTMnames.open(dir_path + "new_names.txt");
+			inputPTMnames.open(dir_path + "libs/names.txt");
 			string sline;
 
 
@@ -808,7 +832,7 @@ int main( ) {
 
 			//// print PTM names from file
 			fstream inputPTMnames;
-			inputPTMnames.open(dir_path + "new_names.txt");
+			inputPTMnames.open(dir_path + "libs/names.txt");
 			string sline;
 
 
@@ -936,7 +960,7 @@ int main( ) {
 
 		output_file << "\n";
 		output_file.close();
-/*
+
 		//cout << "\n\n";
 
 		//--------------------------------------------------------------------------------------------------/
@@ -946,237 +970,255 @@ int main( ) {
 
 		//// write alternative outputs into files
 
-		string alt_output_file_path = dir_path + "results/" + sample + "/" + peptide + "_alternative.txt";
+		//string alt_output_file_path = dir_path + "results/" + sample + "/" + peptide + "_alternative.txt";
 
-		ofstream alt_output_file;
-		alt_output_file.open(alt_output_file_path, ios::out | ios::app);
+//		ofstream alt_output_file;
+//		alt_output_file.open(alt_output_file_path, ios::out | ios::app);
+//
+//
+//
+//
+//		if (combination_1 > 0 && prob_average_1 > 0) {
+//
+//			alt_output_file << "peptide" << "\t" << "mass_shift" << "\t" << "field" << "\t";
+//
+//			for (int i = 1; i < 1; i++) {
+//				alt_output_file << i << "\t";
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "name" << "\t";
+//			for (int i = 0; i < 1; i++) {
+////                alt_output_file << names[highest_prob_pos_1[i]] << "\t";
+//				alt_output_file << "\t";
+//			}
+//
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "mass" << "\t";
+//			for (int i = 0; i < 1; i++) {
+//				if (highest_prob_pos_1[i] != list_end) {
+//					alt_output_file << masses[highest_prob_pos_1[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "score" << "\t";
+//			for (int i = 0; i < 1; i++) {
+//				if (highest_prob_pos_1[i] != list_end) {
+//					alt_output_file << prob[highest_prob_pos_1[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "position" << "\t";
+//			for (int i = 0; i < 1; i++) {
+//				if (highest_prob_pos_1[i] != list_end) {
+//					alt_output_file << 1 + highest_prob_pos_1[i] << "\t";
+//				}
+//			}
+//
+//
+//		} else if (combination_2 > 0 && prob_average_2 > 0) {
+//
+//			alt_output_file << "peptide" << "\t" << "mass_shift" << "\t" << "field" << "\t";
+//
+//			for (int i = 1; i < 2; i++) {
+//				alt_output_file << i << "\t";
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "name" << "\t";
+//			for (int i = 0; i < 2; i++) {
+////                alt_output_file << names[highest_prob_pos_1[i]] << "\t";
+//				alt_output_file << "\t";
+//			}
+//
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "mass" << "\t";
+//			for (int i = 0; i < 2; i++) {
+//				if (highest_prob_pos_2[i] != list_end) {
+//					alt_output_file << masses[highest_prob_pos_2[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "score" << "\t";
+//			for (int i = 0; i < 2; i++) {
+//				if (highest_prob_pos_2[i] != list_end) {
+//					alt_output_file << prob[highest_prob_pos_2[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "position" << "\t";
+//			for (int i = 0; i < 2; i++) {
+//				if (highest_prob_pos_2[i] != list_end) {
+//					alt_output_file << 1 + highest_prob_pos_2[i] << "\t";
+//				}
+//			}
+//
+//		} else if (combination_3 > 0 && prob_average_3 > 0) {
+//
+//			alt_output_file << "peptide" << "\t" << "mass_shift" << "\t" << "field" << "\t";
+//
+//			for (int i = 1; i < 3; i++) {
+//				alt_output_file << i << "\t";
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "name" << "\t";
+//			for (int i = 0; i < 3; i++) {
+//				// alt_output_file << names[highest_prob_pos_1[i]] << "\t";
+//				alt_output_file << "\t";
+//			}
+//
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "mass" << "\t";
+//			for (int i = 0; i < 3; i++) {
+//				if (highest_prob_pos_3[i] != list_end) {
+//					alt_output_file << masses[highest_prob_pos_3[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "score" << "\t";
+//			for (int i = 0; i < 3; i++) {
+//				if (highest_prob_pos_3[i] != list_end) {
+//					alt_output_file << prob[highest_prob_pos_3[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "position" << "\t";
+//			for (int i = 0; i < 3; i++) {
+//				if (highest_prob_pos_3[i] != list_end) {
+//					alt_output_file << 1 + highest_prob_pos_3[i] << "\t";
+//				}
+//			}
+//		}
+//
+//		else if ( more_than_3 == 6 && combination_4 > 0 && prob_average_4 > 0) {
+//
+//			alt_output_file << "peptide" << "\t" << "mass_shift" << "\t" << "field" << "\t";
+//
+//			for (int i = 1; i < 4; i++) {
+//				alt_output_file << i << "\t";
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "name" << "\t";
+//			for (int i = 0; i < 4; i++) {
+//				// alt_output_file << names[highest_prob_pos_1[i]] << "\t";
+//				alt_output_file << "\t";
+//			}
+//
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "mass" << "\t";
+//			for (int i = 0; i < 4; i++) {
+//				if (highest_prob_pos_4[i] != list_end) {
+//					alt_output_file << masses[highest_prob_pos_4[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "score" << "\t";
+//			for (int i = 0; i < 4; i++) {
+//				if (highest_prob_pos_4[i] != list_end) {
+//					alt_output_file << prob[highest_prob_pos_4[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "position" << "\t";
+//			for (int i = 0; i < 4; i++) {
+//				if (highest_prob_pos_4[i] != list_end) {
+//					alt_output_file << 1 + highest_prob_pos_4[i] << "\t";
+//				}
+//			}
+//		}
+//
+//
+//
+//
+//
+//		if (more_than_3 == 4 && combination_4 > 0) {
+//			alt_output_file <<  "peptide" << "\t" << "mass_shift" << "\t" << "field" << "\t" << "1" << "\t" << "2" << "\t" << "3" << "\t" << "4" << "\t";
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "name" << "\t";
+//			for (int i = 0; i < 4; i++) {
+//				if (highest_prob_pos_4[i] != list_end) {
+//					alt_output_file << nat_names[highest_prob_pos_4[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "mass" << "\t";
+//			for (int i = 0; i < 4; i++) {
+//				if (highest_prob_pos_4[i] != list_end) {
+//					alt_output_file << nat_masses[highest_prob_pos_4[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "score" << "\t";
+//			for (int i = 0; i < 4; i++) {
+//				if (highest_prob_pos_4[i] != list_end) {
+//					alt_output_file << nat_prob[highest_prob_pos_4[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "position" << "\t";
+//			for (int i = 0; i < 4; i++) {
+//				if (highest_prob_pos_4[i] != list_end) {
+//					alt_output_file << 1 + highest_prob_pos_4[i] << "\t";
+//				}
+//			}
+//
+//		} else if (more_than_3 == 5 && combination_5 > 0) {
+//			alt_output_file << "peptide" << "\t" << "mass_shift" << "\t" << "field" << "\t" << "1" << "\t" << "2" << "\t" << "3" << "\t" << "4" << "\t" << "5" << "\t";
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "name" << "\t";
+//
+//			for (int i = 0; i < 5; i++) {
+//				if (highest_prob_pos_5[i] != list_end) {
+//					alt_output_file << nat_names[highest_prob_pos_5[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "mass" << "\t";
+//			for (int i = 0; i < 5; i++) {
+//				if (highest_prob_pos_5[i] != list_end) {
+//					alt_output_file << nat_masses[highest_prob_pos_5[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "score" << "\t";
+//			for (int i = 0; i < 5; i++) {
+//				if (highest_prob_pos_5[i] != list_end) {
+//					alt_output_file << nat_prob[highest_prob_pos_5[i]] << "\t";
+//				}
+//			}
+//
+//			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "position" << "\t";
+//			for (int i = 0; i < 5; i++) {
+//				if (highest_prob_pos_5[i] != list_end) {
+//					alt_output_file << 1 + highest_prob_pos_5[i] << "\t";
+//				}
+//			}
+//		}
+//
+//
+//		alt_output_file << "\n";
+//		alt_output_file.close();
 
 
-
-
-		if (combination_1 > 0 && prob_average_1 > 0) {
-
-			alt_output_file << "peptide" << "\t" << "mass_shift" << "\t" << "field" << "\t";
-
-			for (int i = 1; i < 1; i++) {
-				alt_output_file << i << "\t";
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "name" << "\t";
-			for (int i = 0; i < 1; i++) {
-//                alt_output_file << names[highest_prob_pos_1[i]] << "\t";
-				alt_output_file << "\t";
-			}
-
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "mass" << "\t";
-			for (int i = 0; i < 1; i++) {
-				if (highest_prob_pos_1[i] != list_end) {
-					alt_output_file << masses[highest_prob_pos_1[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "score" << "\t";
-			for (int i = 0; i < 1; i++) {
-				if (highest_prob_pos_1[i] != list_end) {
-					alt_output_file << prob[highest_prob_pos_1[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "position" << "\t";
-			for (int i = 0; i < 1; i++) {
-				if (highest_prob_pos_1[i] != list_end) {
-					alt_output_file << 1 + highest_prob_pos_1[i] << "\t";
-				}
-			}
-
-
-		} else if (combination_2 > 0 && prob_average_2 > 0) {
-
-			alt_output_file << "peptide" << "\t" << "mass_shift" << "\t" << "field" << "\t";
-
-			for (int i = 1; i < 2; i++) {
-				alt_output_file << i << "\t";
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "name" << "\t";
-			for (int i = 0; i < 2; i++) {
-//                alt_output_file << names[highest_prob_pos_1[i]] << "\t";
-				alt_output_file << "\t";
-			}
-
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "mass" << "\t";
-			for (int i = 0; i < 2; i++) {
-				if (highest_prob_pos_2[i] != list_end) {
-					alt_output_file << masses[highest_prob_pos_2[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "score" << "\t";
-			for (int i = 0; i < 2; i++) {
-				if (highest_prob_pos_2[i] != list_end) {
-					alt_output_file << prob[highest_prob_pos_2[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "position" << "\t";
-			for (int i = 0; i < 2; i++) {
-				if (highest_prob_pos_2[i] != list_end) {
-					alt_output_file << 1 + highest_prob_pos_2[i] << "\t";
-				}
-			}
-
-		} else if (combination_3 > 0 && prob_average_3 > 0) {
-
-			alt_output_file << "peptide" << "\t" << "mass_shift" << "\t" << "field" << "\t";
-
-			for (int i = 1; i < 3; i++) {
-				alt_output_file << i << "\t";
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "name" << "\t";
-			for (int i = 0; i < 3; i++) {
-				// alt_output_file << names[highest_prob_pos_1[i]] << "\t";
-				alt_output_file << "\t";
-			}
-
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "mass" << "\t";
-			for (int i = 0; i < 3; i++) {
-				if (highest_prob_pos_3[i] != list_end) {
-					alt_output_file << masses[highest_prob_pos_3[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "score" << "\t";
-			for (int i = 0; i < 3; i++) {
-				if (highest_prob_pos_3[i] != list_end) {
-					alt_output_file << prob[highest_prob_pos_3[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "position" << "\t";
-			for (int i = 0; i < 3; i++) {
-				if (highest_prob_pos_3[i] != list_end) {
-					alt_output_file << 1 + highest_prob_pos_3[i] << "\t";
-				}
-			}
-		}
-
-		else if ( more_than_3 == 6 && combination_4 > 0 && prob_average_4 > 0) {
-
-			alt_output_file << "peptide" << "\t" << "mass_shift" << "\t" << "field" << "\t";
-
-			for (int i = 1; i < 4; i++) {
-				alt_output_file << i << "\t";
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "name" << "\t";
-			for (int i = 0; i < 4; i++) {
-				// alt_output_file << names[highest_prob_pos_1[i]] << "\t";
-				alt_output_file << "\t";
-			}
-
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "mass" << "\t";
-			for (int i = 0; i < 4; i++) {
-				if (highest_prob_pos_4[i] != list_end) {
-					alt_output_file << masses[highest_prob_pos_4[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "score" << "\t";
-			for (int i = 0; i < 4; i++) {
-				if (highest_prob_pos_4[i] != list_end) {
-					alt_output_file << prob[highest_prob_pos_4[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "position" << "\t";
-			for (int i = 0; i < 4; i++) {
-				if (highest_prob_pos_4[i] != list_end) {
-					alt_output_file << 1 + highest_prob_pos_4[i] << "\t";
-				}
-			}
-		}
-
-
-
-
-
-		if (more_than_3 == 4 && combination_4 > 0) {
-			alt_output_file <<  "peptide" << "\t" << "mass_shift" << "\t" << "field" << "\t" << "1" << "\t" << "2" << "\t" << "3" << "\t" << "4" << "\t";
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "name" << "\t";
-			for (int i = 0; i < 4; i++) {
-				if (highest_prob_pos_4[i] != list_end) {
-					alt_output_file << nat_names[highest_prob_pos_4[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "mass" << "\t";
-			for (int i = 0; i < 4; i++) {
-				if (highest_prob_pos_4[i] != list_end) {
-					alt_output_file << nat_masses[highest_prob_pos_4[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "score" << "\t";
-			for (int i = 0; i < 4; i++) {
-				if (highest_prob_pos_4[i] != list_end) {
-					alt_output_file << nat_prob[highest_prob_pos_4[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "position" << "\t";
-			for (int i = 0; i < 4; i++) {
-				if (highest_prob_pos_4[i] != list_end) {
-					alt_output_file << 1 + highest_prob_pos_4[i] << "\t";
-				}
-			}
-
-		} else if (more_than_3 == 5 && combination_5 > 0) {
-			alt_output_file << "peptide" << "\t" << "mass_shift" << "\t" << "field" << "\t" << "1" << "\t" << "2" << "\t" << "3" << "\t" << "4" << "\t" << "5" << "\t";
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "name" << "\t";
-
-			for (int i = 0; i < 5; i++) {
-				if (highest_prob_pos_5[i] != list_end) {
-					alt_output_file << nat_names[highest_prob_pos_5[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "mass" << "\t";
-			for (int i = 0; i < 5; i++) {
-				if (highest_prob_pos_5[i] != list_end) {
-					alt_output_file << nat_masses[highest_prob_pos_5[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "score" << "\t";
-			for (int i = 0; i < 5; i++) {
-				if (highest_prob_pos_5[i] != list_end) {
-					alt_output_file << nat_prob[highest_prob_pos_5[i]] << "\t";
-				}
-			}
-
-			alt_output_file << "\n" << peptide << "\t" << mass_shift << "\t" << "position" << "\t";
-			for (int i = 0; i < 5; i++) {
-				if (highest_prob_pos_5[i] != list_end) {
-					alt_output_file << 1 + highest_prob_pos_5[i] << "\t";
-				}
-			}
-		}
-
-
-		alt_output_file << "\n";
-		alt_output_file.close();
-
-*/
 
 	}
+	// timer
+	auto end = chrono::steady_clock::now();
+	auto diff = end - start;
+	string elapsed_time;
 
+	if (chrono::duration <double, milli> (diff).count() < 1) {
+		elapsed_time = to_string(chrono::duration <double, milli> (diff).count()) + " ms";
+	} else {
+		elapsed_time = to_string(chrono::duration <double, milli> (diff).count() / 1000) + " s";
+	}
+	
+	//string output_file_path = dir_path + "Results/" + sample + "_output_Naz.txt";
+
+	//ofstream output_file;
+	output_file.open(output_file_path, ios::out | ios::app);
+	output_file << endl << "Execution time: " << elapsed_time;
+	output_file.close();
+	
+	
 	return 0;
 
 }

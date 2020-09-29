@@ -1,4 +1,5 @@
-library(ggplot2)
+suppressMessages(library(ggplot2))
+
 
 
 args = commandArgs(trailingOnly=TRUE)
@@ -47,3 +48,4 @@ ggplot(frequency_df, aes(x=Var1, y=Freq)) +
   labs (x ="PTMs", y = "Frequency (log10)") + ggtitle(args[1]) + scale_y_log10()
 
 dev.off()
+

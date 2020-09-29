@@ -14,8 +14,7 @@ except:
     exit(1)
 
 #select specific columns
-df_MSFragger_output = df_MSFragger_output[['Peptide', 'Calibrated Observed Mass',
-       'Delta Mass', 'PeptideProphet Probability']]
+df_MSFragger_output = df_MSFragger_output[['Peptide', 'Delta Mass', 'Calibrated Observed Mass', 'PeptideProphet Probability']]
 
 #select only row where PeptideProphet is confident the peptide is correctly identified
 df_MSFragger_output =  df_MSFragger_output[(df_MSFragger_output['PeptideProphet Probability'] > 0.99)]

@@ -65,34 +65,34 @@ float* openFile(string path, int length) {
 int main( ) {
 
 //	string sample = "TP_l1";
-    string sample = "esteban";
+    string sample = "JOHNPP_l1";
     
-	string dir_path = "/Users/nazrathnawaz/Desktop/ptm/ptm/ptm/";
+	string dir_path = "../../";
 	string input_path = dir_path + "input/" + sample + ".txt";
-
+	cout << input_path << endl;
 
 
 	//-------------------------------- Read Input files ------------------------------------------//
 
 	// number of lines in input file
 	//
-	int lines;
-	string s;
+	int lines {};
+	string s {};
 
-	ifstream inputFile;
-	inputFile.open(input_path);
+	ifstream inputFile (input_path);
+	//inputFile.open(input_path);
 
 	if (!inputFile) {
 		cout << "no file" << "\n" << "double check in: " << input_path << "\n";
 		exit(-1);
 	}
 
-	while (!inputFile.eof()) {
+	while ( ! inputFile.eof()) {
 		getline(inputFile, s);
 		lines++;
 	}
 
-//    cout <<  "No of Peptides: " << lines << "\n";
+   cout <<  "No of Peptides: " << lines << "\n";
 
 	//--------------------------------//
 
@@ -112,10 +112,10 @@ int main( ) {
 	//// UniMod masses and probabilities
 
 	// mass shift array
-	float* masses = openFile(dir_path + "new_masses.txt", PTM_list);
+	float* masses = openFile(dir_path + "libs/masses.txt", PTM_list);
 
 	// Probabilities array
-	float* prob = openFile(dir_path + "new_prob.txt", PTM_list);
+	float* prob = openFile(dir_path + "libs/prob.txt", PTM_list);
 
 	// null probability for no matches (last new vector position)
 	prob[list_end] = 0;
@@ -124,18 +124,18 @@ int main( ) {
 	//// Natural frequency masses and probabilities
 
 	// Nat probabilities array
-	float* nat_prob = openFile(dir_path + "new_nat_prob.txt", nat_list);
+	float* nat_prob = openFile(dir_path + "libs/nat_prob.txt", nat_list);
 
 	nat_prob[nat_end] = 0;
 
 	// Nat masses array
-	float* nat_masses = openFile(dir_path + "new_nat_masses.txt", nat_list);
+	float* nat_masses = openFile(dir_path + "libs/nat_masses.txt", nat_list);
 
 
 	// Nat names array
 	string nat_names[nat_list];
 	ifstream fakeNames;
-	fakeNames.open(dir_path + "new_nat_names.txt");
+	fakeNames.open(dir_path + "libs/nat_names.txt");
 
 	int names_count = 0;
 	while (!fakeNames.eof()) {
@@ -149,14 +149,14 @@ int main( ) {
 
 	//-------------------------------------------------------//
 
-
+	cout << "Im here" << endl;
 
 
 	//================================| Peptide - Mass Shift |================================//
 
 
 	for (int x = 1; x <= lines; x += 3) {
-
+		cout << "is it coming here?" << endl;
 		//================================//
 
 		fstream inputPeptides;
@@ -746,7 +746,7 @@ int main( ) {
 		if (more_than_3 <= 3) {
 			//// print PTM names from file
 			fstream inputPTMnames;
-			inputPTMnames.open(dir_path + "new_names.txt");
+			inputPTMnames.open(dir_path + "libs/names.txt");
 			string sline;
 
 
@@ -810,7 +810,7 @@ int main( ) {
 
 			//// print PTM names from file
 			fstream inputPTMnames;
-			inputPTMnames.open(dir_path + "new_names.txt");
+			inputPTMnames.open(dir_path + "libs/names.txt");
 			string sline;
 
 
