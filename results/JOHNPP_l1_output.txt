@@ -415,7 +415,7 @@ NNWYQPLQNHAK	0.0007	504.916	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	p
 VSAMEDEMNEMKR	0.0014	523.895	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	pyruvicC	
 QSNYSELREDIQTK	-0.0001	570.947	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	pyruvicC	
 SNYSELREDIQTK	-0.001	528.261	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	pyruvicC	
-KVENFEK	0.215	447.346	0.214073	15.5988	DehydroalaC	Cys->Xle	di-Methylation	Cys->Val	Gln->Lys	
+KVENFEK	0.215	447.346	0	0	
 VSAMEDEMNEMKR	0.0009	523.895	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	pyruvicC	
 LIGVPESDGENGTK	0.0034	708.355	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	pyruvicC	
 SNYSELREDIQTK	-0.0003	528.261	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	pyruvicC	
@@ -737,7 +737,7 @@ VSAMEDEMNEMK	0.0027	707.289	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	p
 LIGVPESDAENGTK	0.0009	715.362	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	pyruvicC	
 VSAMEDEMNEMK	0	707.287	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	pyruvicC	
 LIGVPESDAENGTK	0.0034	715.363	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	pyruvicC	
-EENFRPISLMNIDAK	0.5648	593.157	0.570045	24.5485	azole	Lysaminoadipicsealde	Unknown:177	Arg-loss	Deamidation	
+EENFRPISLMNIDAK	0.5648	593.157	0	0	
 LSFTSEGEIK	0.0034	555.788	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	pyruvicC	
 VSVMEDEMNEMKR	0.0697	533.261	0.0694122	41.2256	Pyro_glu	Pyro_glu	di-Methylation	tri-Methylation	DehydroalaC	
 LSFTSEGEIK	-0.0071	555.783	-0.0112381	37.8201	Deamidation	Deamidation	Acetyl	Asp->Ala	
@@ -2143,4 +2143,4 @@ LTADLLAETLQAR	0.0002	707.898	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	
 REWGPIFNILK	-0.0002	458.262	0.00315857	46.3259	Acetyl	Acetyl	Pyro_glu	pyruvicC	pyruvicC	
 NQQSLQEIWDYVK	0.0736	825.945	0.0694122	41.2256	Pyro_glu	Pyro_glu	di-Methylation	tri-Methylation	DehydroalaC	
 NQQSLQEIWDYVK	0.0736	825.945	0.0694122	41.2256	Pyro_glu	Pyro_glu	di-Methylation	tri-Methylation	DehydroalaC	
-Elapsed time is : 85.029224 s
+Elapsed time is : 54.798379 s

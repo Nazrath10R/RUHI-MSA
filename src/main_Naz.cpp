@@ -119,7 +119,7 @@ int main(int argc, char** argv) {
 		lines++;
 	}
 
-//    cout <<  "No of Peptides: " << lines << "\n";
+    cout <<  "No of Peptides: " << lines << "\n";
 
 	//--------------------------------//
 

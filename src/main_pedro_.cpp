@@ -6,8 +6,9 @@
     Copyright © 2019 Nazrath Nawaz. All rights reserved.
 */
 #include "main.h"
-
-
+#include <execution>
+#include <valarray>
+#include <mutex>
 //=======================================================================================================//
 using namespace std;
 
@@ -78,26 +79,58 @@ int main(int argc, char** argv) {
 	//// UniMod masses and probabilities
 
 	// mass shift array // PTMs array
-	float* masses = openFile(dir_path + libs + "masses.txt", PTM_list);
-
+	float* masses {};
+	thread read1{[&masses,&dir_path,&libs,&PTM_list] {
+		masses = openFile(dir_path + libs + "masses.txt", PTM_list);
+	}};
+	
 	// Probabilities array
-	float* prob = openFile(dir_path + libs + "prob.txt", (PTM_list+1));
-
-	// null probability for no matches (last new vector position)
-	prob[list_end] = 0;
-	//cout << masses[0] << " and " << masses[PTM_list-1] << " and " << prob[PTM_list-1] << " " << prob[PTM_list] << endl;
+	float* prob {};
+	thread read2{[&prob,&dir_path,&libs,&PTM_list] {
+		prob =openFile(dir_path + libs + "prob.txt", (PTM_list+1));
+	}};
 	
 	//// Natural frequency masses and probabilities
 
 	// Nat probabilities array
-	float* nat_prob = openFile(dir_path + libs + "nat_prob.txt", (nat_list+1));
+	float* nat_prob {};
+	thread read3{[&nat_prob, &dir_path, &libs, &nat_list] {
+		nat_prob = openFile(dir_path + libs + "nat_prob.txt", (nat_list+1));
+	}};
 
-	nat_prob[nat_end] = 0;
 
 	// Nat masses array
-	float* nat_masses = openFile(dir_path + libs + "nat_masses.txt", nat_list);
+	float* nat_masses {};
+	thread read4{[&nat_masses,&dir_path,&libs,&nat_list] {
+		nat_masses = openFile(dir_path + libs + "nat_masses.txt", nat_list);
+	}};
 
+	// getting number of peptides to use as vector 
+	int lines {};
+	string s {};
+	ifstream inputFile;
+	inputFile.open(input_path);
+	
+	thread read5{[&input_path,&inputFile, &s, &lines] {
+		if (!inputFile) {
+			cout << "no file" << "\n" << "double check in: " << input_path << "\n";
+			exit(-1);
+		}
+		while (!inputFile.eof()) {
+			getline(inputFile, s);
+			lines++;
+		}
+	}};
+	// only continue when threads are finished
+	read1.join();
+	read2.join();
+	read3.join();
+	read4.join();
+	read5.join();
+	
+	cout <<  "No of Peptides: " << lines << "\n";
 
+	
 	// Nat names array
 	string nat_names[nat_list];
 	ifstream fakeNames;
@@ -113,8 +146,14 @@ int main(int argc, char** argv) {
 	
 	int nat_prob_length = nat_list;
 
-	//-------------------------------------------------------//
 
+	//-------------------------------------------------------//
+	
+	// null probability for no matches (last new vector position)
+	prob[list_end] = 0;
+	//cout << masses[0] << " and " << masses[PTM_list-1] << " and " << prob[PTM_list-1] << " " << prob[PTM_list] << endl;
+	
+	nat_prob[nat_end] = 0;
 	//-------------------------OUTPUT file--------------------------------//
 
 	string output_file_path = dir_path + "results/" + sample + "_output.txt";
@@ -140,23 +179,28 @@ int main(int argc, char** argv) {
 	
 	//================================| Peptide - Mass Shift |================================//
 	//reading Peptide data: sequence, Mass_shift and peptide Mass
-	ifstream inputPeptideData;
-	inputPeptideData.open(input_path);
+	
 	
 
 	string peptide;
 	float mass_shift;
 	float peptide_mass;
 
-	if (!inputPeptideData) { //testing if the file is being open correctly
-		throw std::runtime_error("Error opening file");
-	}
-	else
-	while (!inputPeptideData.eof()) {
-		//================================//
+	//creating vectors for paralelization of loop
+	lines = (lines-1)/3+1; //remove this for new pre-processing
+	vector<int> v(lines);
+	generate(v.begin(), v.end(), [n = -2] () mutable { return n+=3; });
+
+	
+	for_each(std::execution::par_unseq, begin(v), end(v), [&](int x) {
+
+		fstream inputPeptideData;
+		inputPeptideData.open(input_path);
 		
+		GotoLine(inputPeptideData, x);
 		inputPeptideData >> peptide >> mass_shift >> peptide_mass;
-		
+		//cout << peptide << " " << mass_shift << "peptide mass is: " << peptide_mass;
+		//cout << endl << x << endl;
 
         // Defining mass error
 
@@ -375,7 +419,7 @@ int main(int argc, char** argv) {
 
 		if (combination == 0 && number_of_possible_ptms == 6) {
 		
-        cout << "4 PTMs (Alternative)...";
+        //cout << "4 PTMs (Alternative)...";
 			//
 			//auto [highest_prob_pos_4, combination_4] = findingCombinationOf4PTM_inprogress(masses, prob, PTM_list, mass_shift_lower, mass_shift_upper);
 			
@@ -450,9 +494,9 @@ int main(int argc, char** argv) {
 			output_file.close();
 
 
-			//// skip to next peptide
-			continue;
+			
 		}
+		else {
 
 		//=======================================================================================================//
 
@@ -676,9 +720,10 @@ int main(int argc, char** argv) {
 //			<< prob_5PTM << "\t" << PTMfive[0] << " | " << PTMfive[1] << " | " << PTMfive[2] << " | " << PTMfive[3] << " | " << PTMfive[4] << "\t";
 //
 //		alt_output_file.close();
-	
+
+		x=+3;
 	} //loop finished
-	
+	});
 
 	delete [] masses; delete[]  prob; delete [] nat_masses; delete [] nat_prob; //deleting array created using memory allocation
 	
