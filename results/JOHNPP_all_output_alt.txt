@@ -1,0 +1,1 @@
+Peptide	Mass_shift	Peptide Mass	PTM1_Score	PTM1	PTM2_Score	PTM2	PTM3_Score	PTM3	PTM4_Score	PTM4	PTM5_Score	PTM5

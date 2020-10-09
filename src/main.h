@@ -22,6 +22,9 @@
 #include <sstream>
 #include <cstdlib>
 #include <thread>
+// #include <execution> //for paralelizeation
+//#include <valarray>
+//#include <mutex> // to deal with multithreaded
 
 using namespace std;
 
@@ -1029,7 +1032,7 @@ std::tuple<vector<int>, int, vector<int>, int> findingCombinationOf4and5PTM_Best
 			int limit_2 {};
 			int maximum_2_highest = maximum_2 + dif_upper_lower;
 			if (maximum_2 > list_top_value || maximum_2_highest < list_lowest_value)
-				break; //if its bigger then there is now way to achieve the mass_shift wanted. if the 
+				break; //if its bigger then there is no way to achieve the mass_shift wanted. if the 
 			else
 				limit_2 = binarySearchLargerElement( masses, maximum_2, PTM_list);
 

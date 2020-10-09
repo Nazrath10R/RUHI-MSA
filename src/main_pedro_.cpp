@@ -6,9 +6,7 @@
     Copyright © 2019 Nazrath Nawaz. All rights reserved.
 */
 #include "main.h"
-#include <execution>
-#include <valarray>
-#include <mutex>
+
 //=======================================================================================================//
 using namespace std;
 
@@ -58,7 +56,7 @@ int main(int argc, char** argv) {
 	
 	//string sample = "JOHNPP_l1";
 	string dir_path = "./";
-	string input_path = dir_path + "input/" + sample + ".txt";
+	string input_path = dir_path + sample;
 	string libs = "libs/"; 
 	//float tol = tolerance;
 	//string tole = to_string(tol); //just for testing different tolerances
@@ -121,6 +119,7 @@ int main(int argc, char** argv) {
 			lines++;
 		}
 	}};
+	
 	// only continue when threads are finished
 	read1.join();
 	read2.join();
@@ -156,7 +155,7 @@ int main(int argc, char** argv) {
 	nat_prob[nat_end] = 0;
 	//-------------------------OUTPUT file--------------------------------//
 
-	string output_file_path = dir_path + "results/" + sample + "_output.txt";
+	string output_file_path = dir_path + "results/" + sample + "_out.txt";
 	
 	ofstream output_file;
 	output_file.open(output_file_path, ios::out);
@@ -166,41 +165,36 @@ int main(int argc, char** argv) {
 	
 
 	//-------------Alternative OUTPUT file--------------------------------//
-
-	string alt_output_file_path = dir_path + "results/" + sample + "_output_alt.txt";
-	
-	ofstream alt_output_file;
-	alt_output_file.open(alt_output_file_path, ios::out);
-
-	alt_output_file << "Peptide" << "\t" << "Mass_shift" << "\t" << "Peptide Mass" << "\t" << "PTM1_Score" << "\t" <<  "PTM1" 
-					<< "\t" << "PTM2_Score"<< "\t"<< "PTM2" << "\t" << "PTM3_Score"<< "\t"<< "PTM3" << "\t" << "PTM4_Score" << "\t"<< "PTM4"
-					<< "\t" << "PTM5_Score"<< "\t" << "PTM5";
-	alt_output_file.close();
+	//uncoment to create alterantive OUTPUT file
+//	string alt_output_file_path = dir_path + "results/" + sample + "_output_alt.txt";
+//	
+//	ofstream alt_output_file;
+//	alt_output_file.open(alt_output_file_path, ios::out);
+//
+//	alt_output_file << "Peptide" << "\t" << "Mass_shift" << "\t" << "Peptide Mass" << "\t" << "PTM1_Score" << "\t" <<  "PTM1" 
+//					<< "\t" << "PTM2_Score"<< "\t"<< "PTM2" << "\t" << "PTM3_Score"<< "\t"<< "PTM3" << "\t" << "PTM4_Score" << "\t"<< "PTM4"
+//					<< "\t" << "PTM5_Score"<< "\t" << "PTM5";
+//	alt_output_file.close();
 	
 	//================================| Peptide - Mass Shift |================================//
 	//reading Peptide data: sequence, Mass_shift and peptide Mass
+	ifstream inputPeptideData;
+	inputPeptideData.open(input_path);
 	
-	
-
 	string peptide;
 	float mass_shift;
 	float peptide_mass;
-
-	//creating vectors for paralelization of loop
-	lines = (lines-1)/3+1; //remove this for new pre-processing
-	vector<int> v(lines);
-	generate(v.begin(), v.end(), [n = -2] () mutable { return n+=3; });
-
 	
-	for_each(std::execution::par_unseq, begin(v), end(v), [&](int x) {
+	
+	if (!inputPeptideData) { //testing if the file is being open correctly
+		throw std::runtime_error("Error opening file");
+	}
+	else
+	while (!inputPeptideData.eof()) {
+	//================================//
 
-		fstream inputPeptideData;
-		inputPeptideData.open(input_path);
-		
-		GotoLine(inputPeptideData, x);
 		inputPeptideData >> peptide >> mass_shift >> peptide_mass;
-		//cout << peptide << " " << mass_shift << "peptide mass is: " << peptide_mass;
-		//cout << endl << x << endl;
+		
 
         // Defining mass error
 
@@ -494,9 +488,9 @@ int main(int argc, char** argv) {
 			output_file.close();
 
 
-			
+			//// skip to next peptide
+			continue;
 		}
-		else {
 
 		//=======================================================================================================//
 
@@ -720,10 +714,9 @@ int main(int argc, char** argv) {
 //			<< prob_5PTM << "\t" << PTMfive[0] << " | " << PTMfive[1] << " | " << PTMfive[2] << " | " << PTMfive[3] << " | " << PTMfive[4] << "\t";
 //
 //		alt_output_file.close();
-
-		x=+3;
+	
 	} //loop finished
-	});
+	
 
 	delete [] masses; delete[]  prob; delete [] nat_masses; delete [] nat_prob; //deleting array created using memory allocation
 	
@@ -738,14 +731,16 @@ int main(int argc, char** argv) {
 		}
 		
 	
+	cout << "Time taken for " << sample << " is " << elapsed_time << endl;
 	
-	output_file.open(output_file_path, ios::out | ios::app); 
+	output_file.open(output_file_path, ios::out | ios::app);
+	output_file << endl;
+	//output_file.open(output_file_path, ios::out | ios::app); 
 	
-	output_file << "\n" << "Elapsed time is : " << elapsed_time << "\n";
-	output_file.close();
+	//output_file << "\n" << "Elapsed time is : " << elapsed_time << "\n";
+	//output_file.close();
 		
 	return 0;
-
 }
 
 
